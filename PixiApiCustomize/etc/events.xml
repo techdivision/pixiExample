@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+ ~ Copyright (c) 2019 TechDivision GmbH
+ ~ All rights reserved
+ ~
+ ~ This product includes proprietary software developed at TechDivision GmbH, Germany
+ ~ For more information see http://www.techdivision.com/
+ ~
+ ~ To obtain a valid license for using this software please contact us at
+ ~ license@techdivision.com
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!--Order Export-->
+    <event name="techdivision_pixi_export_order_before">
+        <observer name="pixiapicustomize_export_order_before" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderBefore" />
+    </event>
+    <event name="techdivision_pixi_export_order_item_before">
+        <observer name="pixiapicustomize_export_order_item_before" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderItemBefore" />
+    </event>
+    <event name="techdivision_pixi_export_order_item_after">
+        <observer name="pixiapicustomize_export_order_item_after" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderItemObserver" />
+    </event>
+    <event name="techdivision_pixi_export_order_after">
+        <observer name="pixiapicustomize_export_order_after" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderAfter" />
+    </event>
+
+    <!--Catalog Export-->
+    <event name="techdivision_pixi_export_catalog_check">
+        <observer name="pixiapicustomize_export_catalog_check" instance="pixiExample\PixiApiCustomize\Observer\ExportCatalogCheck" />
+    </event>
+    <event name="techdivision_pixi_export_catalog_products_article_features">
+        <observer name="pixiapicustomize_export_catalog_products_article_features" instance="pixiExample\PixiApiCustomize\Observer\ExportCatalogArticleFeature" />
+    </event>
+    <event name="techdivision_pixi_export_catalog_products_article">
+        <observer name="pixiapicustomize_export_catalog_products_article" instance="pixiExample\PixiApiCustomize\Observer\ExportCatalogProductsArticle" />
+    </event>
+    <event name="techdivision_pixi_export_catalog_products">
+        <observer name="pixiapicustomize_export_catalog_products" instance="pixiExample\PixiApiCustomize\Observer\ExportCatalogProducts" />
+    </event>
+</config>

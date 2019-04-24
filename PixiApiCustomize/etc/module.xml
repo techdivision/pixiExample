@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+ ~ Copyright (c) 2019 TechDivision GmbH
+ ~ All rights reserved
+ ~
+ ~ This product includes proprietary software developed at TechDivision GmbH, Germany
+ ~ For more information see http://www.techdivision.com/
+ ~
+ ~ To obtain a valid license for using this software please contact us at
+ ~ license@techdivision.com
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="pixiExample_PixiApiCustomize" setup_version="1.0.0" >
+        <sequence>
+            <module name="TechDivision_Pixi"/>
+        </sequence>
+    </module>
+</config>
