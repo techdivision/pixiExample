@@ -4,12 +4,20 @@
 The example module can be used as a reference to extend the **TechDivision/Pixi** events.
 
 ## Dokumentation 
-see [README.md](pixiExample/PixiApiCustomize/README.md) in PixiApiCustomize
+see [README.md](https://github.com/techdivision/pixiExample/tree/master/PixiApiCustomize) in PixiApiCustomize
 
 ### Install example
 ```
+# Create local namespace in Magento
+cd app/code
+mkdir TechDivision
+cd Techdivision
+
 # clone pixiExample to your app/code folder with all Event example implementation
 git clone https://github.com/techdivision/pixiExample.git
+
+# Back to Magento root
+cd ../../..
 
 # upgrade Magento, install the PixiApiCustomize
 bin/magento setup:upgrade
