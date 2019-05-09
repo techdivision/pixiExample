@@ -18,7 +18,7 @@
         <observer name="pixiapicustomize_export_order_item_before" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderItemBefore" />
     </event>
     <event name="techdivision_pixi_export_order_item_after">
-        <observer name="pixiapicustomize_export_order_item_after" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderItemObserver" />
+        <observer name="pixiapicustomize_export_order_item_after" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderItemAfter" />
     </event>
     <event name="techdivision_pixi_export_order_after">
         <observer name="pixiapicustomize_export_order_after" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderAfter" />
