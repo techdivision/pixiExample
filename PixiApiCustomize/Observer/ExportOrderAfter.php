@@ -35,6 +35,6 @@ class ExportOrderAfter implements ObserverInterface
         $xmlData['NEWELEMENT'] = 'OrderVALUE';
 
         // save it back to change the xml tree.
-        $xmlData->setData('data', $xmlData);
+        $xml->setData('data', $xmlData);
     }
 }
