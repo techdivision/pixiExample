@@ -12,7 +12,6 @@
 
 namespace pixiExample\PixiApiCustomize\Observer;
 
-use Magento\Catalog\Model\Product\Attribute\Source\Status as ProductStatus;
 use \Magento\Framework\Event\Observer;
 
 /**
