@@ -24,6 +24,11 @@
         <observer name="pixiapicustomize_export_order_after" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderAfter" />
     </event>
 
+    <!-- Import Order -->
+    <event name="techdivision_pixi_import_order_status_after">
+        <observer name="pixiapicustomize_import_order_status_after" instance="pixiExample\PixiApiCustomize\Observer\ImportOrderStatusAfter" />
+    </event>
+
     <!--Catalog Export-->
     <event name="techdivision_pixi_export_catalog_check">
         <observer name="pixiapicustomize_export_catalog_check" instance="pixiExample\PixiApiCustomize\Observer\ExportCatalogCheck" />
