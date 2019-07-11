@@ -63,4 +63,19 @@ abstract class AbstractObserver implements ObserverInterface
         return $xml;
     }
 
+    protected function createXmlElement($tag, array $attributes = [], $content = null)
+    {
+        // create new XML element
+        $xml = new SimpleXMLElement(sprintf('<%s/>', $tag));
+        // add attributes
+        foreach ($attributes as $name => $value) {
+            $this->addAttribute($xml, $name, $value);
+        }
+        // set content
+        if (!is_null($content)) {
+            $xml[0] = $content;
+        }
+        // return element
+        return $xml;
+    }
 }
