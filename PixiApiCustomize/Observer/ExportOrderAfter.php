@@ -39,7 +39,9 @@ class ExportOrderAfter extends AbstractObserver
     }
 
     /**
-     * @param $xmlData
+     * @param array $xmlData
+     * @param \Magento\Sales\Model\Order $order
+     * @return array
      */
     public function getRemarks($xmlData, $order)
     {
