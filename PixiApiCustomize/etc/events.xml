@@ -44,6 +44,9 @@
     </event>
 
     <!--Import stock-->
+    <event name="techdivision_pixi_import_stock_sourceitem_before_save">
+        <observer name="pixiapicustomize_import_stock_sourceitem" instance="pixiExample\PixiApiCustomize\Observer\ImportStockSourceItemBeforeSave" />
+    </event>
     <event name="techdivision_pixi_import_stock_item_before_save">
         <observer name="pixiapicustomize_import_stock_item" instance="pixiExample\PixiApiCustomize\Observer\ImportStockItemBeforeSave" />
     </event>

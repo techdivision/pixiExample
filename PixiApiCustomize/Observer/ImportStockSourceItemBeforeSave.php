@@ -2,11 +2,11 @@
 
 namespace pixiExample\PixiApiCustomize\Observer;
 
-use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use \Magento\Framework\Event\Observer;
+use Magento\InventoryApi\Api\Data\SourceItemInterface;
 use TechDivision\Pixi\Logger\Logger;
 
-class ImportStockItemBeforeSave extends AbstractObserver
+class ImportStockSourceItemBeforeSave extends AbstractObserver
 {
     /** @var Logger */
     private $pixiLogger;
@@ -28,17 +28,17 @@ class ImportStockItemBeforeSave extends AbstractObserver
         $perform_product_save = $observer->getData('perform_product_save');
 
         // get stock item
-        $stockItem = $observer->getData('stock_item');
+        $sourceItem = $observer->getData('source_item');
         $product = $observer->getData('product');
 
         // Get xml data from import stock call per item
         $xml_item_data = $observer->getData('xml_item_data');
 
         $this->pixiLogger->info('XML data from Pixi', $xml_item_data);
-        $this->pixiLogger->info(sprintf('Import stock quantity %s from SKU %s', $stockItem->getQty(), $product->getSku()));
+        $this->pixiLogger->info(sprintf('Import stock quantity %s from SKU %s', $sourceItem->getQuantity(), $product->getSku()));
 
         if ($xml_item_data['QUANTITY'] <= 0 && $xml_item_data['MIN_STOCK_QTY'] == -99) {
-            $stockItem->setIsInStock(false);
+            $sourceItem->setStatus(1); // for Example like backorders
 
             if (!$perform_product_save) {
                 // Force to save product if anything changed in this observer on product model
