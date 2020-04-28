@@ -22,7 +22,7 @@ use \Magento\Framework\Event\Observer;
 class ExportCatalogProductCollection extends AbstractObserver
 {
     /**
-     * Observe product collection in order to allow changes and additions
+     * Observe product collection to allow changes and additions
      *
      * @param Observer $observer
      */
