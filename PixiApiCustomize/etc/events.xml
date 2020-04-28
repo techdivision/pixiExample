@@ -42,6 +42,9 @@
     <event name="techdivision_pixi_export_catalog_products">
         <observer name="pixiapicustomize_export_catalog_products" instance="pixiExample\PixiApiCustomize\Observer\ExportCatalogProducts" />
     </event>
+    <event name="techdivision_pixi_export_catalog_product_collection">
+        <observer name="pixiapicustomize_export_catalog_product_collection" instance="pixiExample\PixiApiCustomize\Observer\ExportCatalogProductCollection" />
+    </event>
 
     <!--Import stock-->
     <event name="techdivision_pixi_import_stock_sourceitem_before_save">

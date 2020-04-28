@@ -2,6 +2,9 @@
 
 ## Catalog
 
+### techdivision_pixi_export_catalog_product_collection
+The event is called before all products item loaded to extend product information. see [ExportCatalogProducts](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/ExportCatalogProductCollection.php)
+
 ### techdivision_pixi_export_catalog_check
 The event is called before the catalog is exported and is used to implement an abort of the catalog export. see [ExportCatalogCheck](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/ExportCatalogCheck.php) 
 
