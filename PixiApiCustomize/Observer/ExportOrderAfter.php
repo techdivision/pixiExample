@@ -12,7 +12,7 @@
 
 namespace pixiExample\PixiApiCustomize\Observer;
 
-use \Magento\Framework\Event\Observer;
+use Magento\Framework\Event\Observer;
 use SimpleXMLElement;
 
 /**
@@ -32,7 +32,12 @@ class ExportOrderAfter extends AbstractObserver
 
         // extract the data and fiddle with it.
         $xmlData = $xml->getData('data');
-        $xmlData = $this->getRemarks($xmlData, $order);
+
+        // example for own order item
+        // $xmlData = $this->getNewOrderItem($xmlData);
+
+        // example for manipulate remarks
+        // $xmlData = $this->getRemarks($xmlData, $order);
 
         // save it back to change the xml tree.
         $xml->setData('data', $xmlData);
@@ -46,31 +51,71 @@ class ExportOrderAfter extends AbstractObserver
     public function getRemarks($xmlData, $order)
     {
         $orderInfo = $xmlData['ORDER_HEADER']['ORDER_INFO'];
-        $foundRemarkType = array();
+        $foundRemarkType = [];
         foreach ($orderInfo as $key => $value) {
             if ($value instanceof SimpleXMLElement) {
                 /** $value SimpleXMLElement */
-                if ($value->getName() == 'REMARK') {
+                if ($value->getName() === 'REMARK') {
                     $foundRemarkType[(string)$value['type']] = true;
                     switch ((string)$value['type']) {
+                        case 'VOUCHERCODE':
+                        case 'DISCOUNT':
                         case 'SHIPPING':
                             break;
-                        case 'VOUCHERCODE':
-                            break;
-                        case 'DISCOUNT':
-                            break;
                         case 'SHIPPINGVENDOR':
-                            $value[0] = $value[0] . ' StarUpsDhlCoop';
+                            $value[0] .= ' StarUpsDhlCoop';
                             break;
                     }
                 }
             }
         }
         if (!isset($foundRemarkType['FooBar'])) {
-            $foobar = $this->createXmlElement('REMARK', array('type' => 'FooBar'), 1234.56);
+            $foobar = $this->createXmlElement('REMARK', ['type' => 'FooBar'], 1234.56);
             $orderInfo[] = $foobar;
             $xmlData['ORDER_HEADER']['ORDER_INFO'] = $orderInfo;
         }
+        return $xmlData;
+    }
+
+    /**
+     * Wanna add own Order Item? Here an example how it works
+     *
+     * @param array $xmlData
+     * @return array
+     */
+    public function getNewOrderItem($xmlData)
+    {
+        // define xml data
+        $xmlArray = [
+            // item id
+            'LINE_ITEM_ID' => 99,
+            'ARTICLE_ID' => [
+                'SUPPLIER_AID' => 'MyProductId',
+            ],
+            // quantity
+            'QUANTITY' => (float)1,
+            // names and descriptions
+            'DESCRIPTION_SHORT' => 'Dynamik item Product',
+            'ITEM_NOTE' => '',
+            'ITEM_NAME' => 'DI Product',
+            // prices
+            $this->addArrayToXml(
+                $this->createXmlElement(
+                    'ARTICLE_PRICE',
+                    [
+                        'type' => 'udp_gross_customer' // Or 'udp_net_customer'
+                    ]
+                ),
+                [
+                    'FULL_PRICE' => 8.5,
+                    'PRICE_AMOUNT' => 8.5,
+                    'PRICE_LINE_AMOUNT' => 8.5,
+                    'DISCOUNT_VALUE' => 0.00,
+                ]
+            ),
+        ];
+        $xmlData['ORDER_ITEM_LIST'][] = $this->addArrayToXml($this->createXmlElement('ORDER_ITEM'), $xmlArray);
+        $xmlData['ORDER_SUMMARY']['TOTAL_ITEM_NUM'] += 1;
         return $xmlData;
     }
 }
