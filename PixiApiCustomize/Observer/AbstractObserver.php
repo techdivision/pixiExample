@@ -85,4 +85,45 @@ abstract class AbstractObserver implements ObserverInterface
         // return element
         return $xml;
     }
+
+
+    /**
+     * Add an XML child to an XML element
+     *
+     * @param SimpleXMLElement $to
+     * @param SimpleXMLElement $from
+     */
+    protected function addXmlChild(SimpleXMLElement $to, SimpleXMLElement $from)
+    {
+        // convert to dom
+        $toDom = dom_import_simplexml($to);
+        $fromDom = dom_import_simplexml($from);
+        // append
+        $toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
+    }
+
+    /**
+     * Add children to XML object
+     *
+     * @param SimpleXMLElement $xml
+     * @param array $data
+     * @return SimpleXMLElement
+     */
+    protected function addArrayToXml(SimpleXMLElement $xml, array $data)
+    {
+        // iterate over data and set children
+        foreach ($data as $key => $value) {
+            if (is_array($value)) {
+                $child = $this->addChild($xml, $key);
+                $this->addArrayToXml($child, $value);
+            } elseif ($value instanceof SimpleXMLElement) {
+                $this->addXmlChild($xml, $value);
+            } elseif ($key !== '' && $value !== '' && !is_null($value)) {
+                $this->addChild($xml, $key, $value);
+            }
+        }
+
+        // return xml
+        return $xml;
+    }
 }
