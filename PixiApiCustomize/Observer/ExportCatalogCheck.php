@@ -12,12 +12,12 @@
 
 namespace pixiExample\PixiApiCustomize\Observer;
 
-use \Magento\Framework\Event\Observer;
+use Magento\Framework\Event\Observer;
 
 /**
- * @copyright   Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
- * @link        https://www.techdivision.com/
- * @author      Martin Eisenführer <m.eisenfuehrer@techdivision.com>
+ * @copyright Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link      https://www.techdivision.com/
+ * @author    Martin Eisenführer <m.eisenfuehrer@techdivision.com>
  */
 class ExportCatalogCheck extends AbstractObserver
 {

@@ -12,13 +12,13 @@
 
 namespace pixiExample\PixiApiCustomize\Observer;
 
-use \Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\Event\ObserverInterface;
 use SimpleXMLElement;
 
 /**
- * @copyright   Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
- * @link        https://www.techdivision.com/
- * @author      Martin Eisenführer <m.eisenfuehrer@techdivision.com>
+ * @copyright Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link      https://www.techdivision.com/
+ * @author    Martin Eisenführer <m.eisenfuehrer@techdivision.com>
  */
 abstract class AbstractObserver implements ObserverInterface
 {
@@ -39,7 +39,7 @@ abstract class AbstractObserver implements ObserverInterface
      *
      * @param SimpleXMLElement $xml
      * @param string $name
-     * @param string [$value]
+     * @param string $value
      * @return SimpleXMLElement
      */
     protected function addChild(SimpleXMLElement $xml, $name, $value = null)
@@ -63,11 +63,14 @@ abstract class AbstractObserver implements ObserverInterface
         return $xml;
     }
 
-    /**+
+    /**
+     * +
      * Create a SimpleXMLElement
-     * @param $tag
+     *
+
+     * @param string $tag
      * @param array $attributes
-     * @param null $content
+     * @param string|int $content
      * @return SimpleXMLElement
      */
     protected function createXmlElement($tag, array $attributes = [], $content = null)
@@ -79,13 +82,12 @@ abstract class AbstractObserver implements ObserverInterface
             $this->addAttribute($xml, $name, $value);
         }
         // set content
-        if (!is_null($content)) {
+        if ($content !== null) {
             $xml[0] = $content;
         }
         // return element
         return $xml;
     }
-
 
     /**
      * Add an XML child to an XML element
@@ -118,7 +120,7 @@ abstract class AbstractObserver implements ObserverInterface
                 $this->addArrayToXml($child, $value);
             } elseif ($value instanceof SimpleXMLElement) {
                 $this->addXmlChild($xml, $value);
-            } elseif ($key !== '' && $value !== '' && !is_null($value)) {
+            } elseif ($key !== '' && $value !== '' && $value !== null) {
                 $this->addChild($xml, $key, $value);
             }
         }

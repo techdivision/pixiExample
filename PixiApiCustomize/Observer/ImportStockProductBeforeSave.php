@@ -2,13 +2,22 @@
 
 namespace pixiExample\PixiApiCustomize\Observer;
 
-use \Magento\Framework\Event\Observer;
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
+use Magento\Framework\Event\Observer;
 use TechDivision\Pixi\Logger\Logger;
 
+/**
+ * @copyright  Copyright (c) 2020 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link       http://www.techdivision.com/
+ * @author     MET <met@techdivision.com>
+ */
 class ImportStockProductBeforeSave extends AbstractObserver
 {
-    /** @var \TechDivision\Pixi\Logger\Logger */
+    /**
+     *
+     *
+     * @var \TechDivision\Pixi\Logger\Logger
+     */
     private $pixiLogger;
 
     /**
@@ -39,7 +48,10 @@ class ImportStockProductBeforeSave extends AbstractObserver
         if (!empty($xml_item_data['EAN'])) {
             $this->pixiLogger->info('Import has EAN');
         }
-        $this->pixiLogger->info('Status from Product', ['SKU' => $product->getSku(), 'Status' => $product->getStatus()]);
+        $this->pixiLogger->info(
+            'Status from Product',
+            ['SKU' => $product->getSku(), 'Status' => $product->getStatus()]
+        );
 
         // disable product if stock quantity <= 0 and MIN_STOCK_QTY = -99
         if ($xml_item_data['QUANTITY'] <= 0 && $xml_item_data['MIN_STOCK_QTY'] == -99) {

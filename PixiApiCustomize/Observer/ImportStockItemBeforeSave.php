@@ -2,13 +2,21 @@
 
 namespace pixiExample\PixiApiCustomize\Observer;
 
-use Magento\Catalog\Model\Product\Attribute\Source\Status;
-use \Magento\Framework\Event\Observer;
+use Magento\Framework\Event\Observer;
 use TechDivision\Pixi\Logger\Logger;
 
+/**
+ * @copyright  Copyright (c) 2020 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link       http://www.techdivision.com/
+ * @author     MET <met@techdivision.com>
+ */
 class ImportStockItemBeforeSave extends AbstractObserver
 {
-    /** @var Logger */
+    /**
+     *
+     *
+     * @var Logger
+     */
     private $pixiLogger;
 
     /**
@@ -35,7 +43,13 @@ class ImportStockItemBeforeSave extends AbstractObserver
         $xml_item_data = $observer->getData('xml_item_data');
 
         $this->pixiLogger->info('XML data from Pixi', $xml_item_data);
-        $this->pixiLogger->info(sprintf('Import stock quantity %s from SKU %s', $stockItem->getQty(), $product->getSku()));
+        $this->pixiLogger->info(
+            sprintf(
+                'Import stock quantity %s from SKU %s',
+                $stockItem->getQty(),
+                $product->getSku()
+            )
+        );
 
         if ($xml_item_data['QUANTITY'] <= 0 && $xml_item_data['MIN_STOCK_QTY'] == -99) {
             $stockItem->setIsInStock(false);

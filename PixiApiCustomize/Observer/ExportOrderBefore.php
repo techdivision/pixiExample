@@ -12,23 +12,27 @@
 
 namespace pixiExample\PixiApiCustomize\Observer;
 
-use \Magento\Framework\Event\Observer;
-use \Magento\Framework\Event\ObserverInterface;
+use Magento\Framework\Event\Observer;
+use Magento\Framework\Event\ObserverInterface;
 
 /**
- * @copyright   Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
- * @link        https://www.techdivision.com/
- * @author      Martin Eisenführer <m.eisenfuehrer@techdivision.com>
+ * @copyright Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link      https://www.techdivision.com/
+ * @author    Martin Eisenführer <m.eisenfuehrer@techdivision.com>
  */
 class ExportOrderBefore implements ObserverInterface
 {
+    /**
+     * @param Observer $observer
+     */
     public function execute(Observer $observer)
     {
         // get order.
-        /** @var \Magento\Sales\Model\Order $order */
+        /**
+         * @var \Magento\Sales\Model\Order $order
+         */
         $order = $observer->getData('order');
 
         $order->setIncrementId('A' . $order->getIncrementId());
-
     }
 }

@@ -16,19 +16,23 @@ use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 
 /**
- * @copyright   Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
- * @link        https://www.techdivision.com/
- * @author      Martin Eisenführer <m.eisenfuehrer@techdivision.com>
+ * @copyright Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link      https://www.techdivision.com/
+ * @author    Martin Eisenführer <m.eisenfuehrer@techdivision.com>
  */
 class ExportOrderItemBefore implements ObserverInterface
 {
+    /**
+     * @param Observer $observer
+     */
     public function execute(Observer $observer)
     {
         // get order itm.
-        /** @var \Magento\Sales\Api\Data\OrderItemInterface $orderItem */
+        /**
+         * @var \Magento\Sales\Api\Data\OrderItemInterface $orderItem
+         */
         $orderItem = $observer->getData('order_item');
 
         $orderItem->setDescription('Export ' . $orderItem->getDescription());
-
     }
 }

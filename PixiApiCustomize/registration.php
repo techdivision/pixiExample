@@ -13,6 +13,6 @@
 // register module
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'pixiExample_PixiApiCustomize',
+    'PixiExample_PixiApiCustomize',
     __DIR__
 );

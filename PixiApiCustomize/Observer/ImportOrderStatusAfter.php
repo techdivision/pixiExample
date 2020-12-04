@@ -12,16 +12,19 @@
 
 namespace pixiExample\PixiApiCustomize\Observer;
 
-use \Magento\Framework\Event\Observer;
+use Magento\Framework\Event\Observer;
 
 /**
- * @copyright   Copyright (c) 2019 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
- * @link        https://www.techdivision.com/
- * @author      Martin Eisenführer <m.eisenfuehrer@techdivision.com>
+ * @copyright Copyright (c) 2019 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link      https://www.techdivision.com/
+ * @author    Martin Eisenführer <m.eisenfuehrer@techdivision.com>
  */
 class ImportOrderStatusAfter extends AbstractObserver
 {
-    /** @var \TechDivision\Pixi\Logger\Logger */
+
+    /**
+     * @var \TechDivision\Pixi\Logger\Logger
+     */
     private $pixiLogger;
 
     /**
@@ -42,7 +45,9 @@ class ImportOrderStatusAfter extends AbstractObserver
         $changedAllowed = $observer->getData('changedAllowed');
         $originStatus = $observer->getData('oldStatus');
 
-        /** @var \Magento\Sales\Model\Order $order */
+        /*
+         * @var \Magento\Sales\Model\Order $order
+         */
         $order = $observer->getData('order');
         $xml = $observer->getData('xml');
 
@@ -52,7 +57,13 @@ class ImportOrderStatusAfter extends AbstractObserver
         $itemId = $xmlData['LINE_ITEM_ID'];
         $orderItem = $order->getItemById($itemId);
         if (!$orderItem) {
-            $this->pixiLogger->error(sprintf('Ups, why can not find order item ID "%s" from order "%s"', $itemId, $order->getIncrementId()));
+            $this->pixiLogger->error(
+                sprintf(
+                    'Ups, why can not find order item ID "%s" from order "%s"',
+                    $itemId,
+                    $order->getIncrementId()
+                )
+            );
             return;
         }
 

@@ -15,12 +15,15 @@ namespace pixiExample\PixiApiCustomize\Observer;
 use \Magento\Framework\Event\Observer;
 
 /**
- * @copyright   Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
- * @link        https://www.techdivision.com/
- * @author      Martin Eisenführer <m.eisenfuehrer@techdivision.com>
+ * @copyright Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link      https://www.techdivision.com/
+ * @author    Martin Eisenführer <m.eisenfuehrer@techdivision.com>
  */
 class ExportCatalogProducts extends AbstractObserver
 {
+    /**
+     * @param Observer $observer
+     */
     public function execute(Observer $observer)
     {
         // get xml tree of order as DataObject.
@@ -29,5 +32,4 @@ class ExportCatalogProducts extends AbstractObserver
         $newFeature = $this->addChild($xml, 'TD_LAST_SECTION_IN_CATALOG');
         $this->addChild($newFeature, 'OWN_DATA', 'TD_NEW_DATA');
     }
-
 }

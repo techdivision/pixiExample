@@ -15,12 +15,15 @@ namespace pixiExample\PixiApiCustomize\Observer;
 use \Magento\Framework\Event\Observer;
 
 /**
- * @copyright   Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
- * @link        https://www.techdivision.com/
- * @author      Martin Eisenführer <m.eisenfuehrer@techdivision.com>
+ * @copyright Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link      https://www.techdivision.com/
+ * @author    Martin Eisenführer <m.eisenfuehrer@techdivision.com>
  */
 class ExportCatalogProductsArticle extends AbstractObserver
 {
+    /**
+     * @param Observer $observer
+     */
     public function execute(Observer $observer)
     {
         // get product.
@@ -32,5 +35,4 @@ class ExportCatalogProductsArticle extends AbstractObserver
         $newFeature = $this->addChild($xml, 'TD_OWN_SECTION_EVERY_ARTICLE');
         $this->addChild($newFeature, 'TD_NEW_ITEM_ELEMENT', 'ProductVALUE ' . $product->getId());
     }
-
 }

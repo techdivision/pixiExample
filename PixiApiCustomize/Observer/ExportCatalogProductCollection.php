@@ -12,12 +12,12 @@
 
 namespace pixiExample\PixiApiCustomize\Observer;
 
-use \Magento\Framework\Event\Observer;
+use Magento\Framework\Event\Observer;
 
 /**
- * @copyright   Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
- * @link        https://www.techdivision.com/
- * @author      Martin Eisenführer <m.eisenfuehrer@techdivision.com>
+ * @copyright Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link      https://www.techdivision.com/
+ * @author    Martin Eisenführer <m.eisenfuehrer@techdivision.com>
  */
 class ExportCatalogProductCollection extends AbstractObserver
 {
@@ -28,7 +28,9 @@ class ExportCatalogProductCollection extends AbstractObserver
      */
     public function execute(Observer $observer)
     {
-        /** @var \TechDivision\Pixi\Model\ResourceModel\Product\Collection $productCollection */
+        /**
+         * @var \TechDivision\Pixi\Model\ResourceModel\Product\Collection $productCollection
+         */
         $productCollection = $observer->getData('product_collection');
 
         $productCollection->addAttributeToSelect(['meta_description']);

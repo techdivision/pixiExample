@@ -16,16 +16,19 @@ use Magento\Framework\Event\Observer;
 use SimpleXMLElement;
 
 /**
- * @copyright   Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
- * @link        https://www.techdivision.com/
- * @author      Martin Eisenführer <m.eisenfuehrer@techdivision.com>
+ * @copyright Copyright (c) 2018 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
+ * @link      https://www.techdivision.com/
+ * @author    Martin Eisenführer <m.eisenfuehrer@techdivision.com>
  */
 class ExportOrderAfter extends AbstractObserver
 {
+    /**
+     * @param Observer $observer
+     */
     public function execute(Observer $observer)
     {
         // get order.
-        $order = $observer->getData('order');
+//        $order = $observer->getData('order');
 
         // get xml tree of order as DataObject.
         $xml = $observer->getData('xml');
@@ -44,17 +47,15 @@ class ExportOrderAfter extends AbstractObserver
     }
 
     /**
-     * @param array $xmlData
-     * @param \Magento\Sales\Model\Order $order
+     * @param  array                      $xmlData
      * @return array
      */
-    public function getRemarks($xmlData, $order)
+    public function getRemarks($xmlData)
     {
         $orderInfo = $xmlData['ORDER_HEADER']['ORDER_INFO'];
         $foundRemarkType = [];
-        foreach ($orderInfo as $key => $value) {
+        foreach ($orderInfo as $value) {
             if ($value instanceof SimpleXMLElement) {
-                /** $value SimpleXMLElement */
                 if ($value->getName() === 'REMARK') {
                     $foundRemarkType[(string)$value['type']] = true;
                     switch ((string)$value['type']) {
@@ -80,7 +81,7 @@ class ExportOrderAfter extends AbstractObserver
     /**
      * Wanna add own Order Item? Here an example how it works
      *
-     * @param array $xmlData
+     * @param  array $xmlData
      * @return array
      */
     public function getNewOrderItem($xmlData)

@@ -10,7 +10,7 @@
  ~ license@techdivision.com
  -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="pixiExample_PixiApiCustomize" setup_version="1.0.0" >
+    <module name="PixiExample_PixiApiCustomize" setup_version="1.0.0" >
         <sequence>
             <module name="TechDivision_Pixi"/>
         </sequence>
