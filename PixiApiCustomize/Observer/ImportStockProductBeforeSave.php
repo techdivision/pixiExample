@@ -4,7 +4,7 @@ namespace pixiExample\PixiApiCustomize\Observer;
 
 use Magento\Catalog\Model\Product\Attribute\Source\Status;
 use Magento\Framework\Event\Observer;
-use TechDivision\Pixi\Logger\Logger;
+use Psr\Log\LoggerInterface as Logger;
 
 /**
  * @copyright  Copyright (c) 2020 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
@@ -16,12 +16,12 @@ class ImportStockProductBeforeSave extends AbstractObserver
     /**
      *
      *
-     * @var \TechDivision\Pixi\Logger\Logger
+     * @var Logger
      */
     private $pixiLogger;
 
     /**
-     * @param \TechDivision\Pixi\Logger\Logger $pixiLogger
+     * @param Logger $pixiLogger
      */
     public function __construct(Logger $pixiLogger)
     {

@@ -3,7 +3,7 @@
 namespace pixiExample\PixiApiCustomize\Observer;
 
 use Magento\Framework\Event\Observer;
-use TechDivision\Pixi\Logger\Logger;
+use Psr\Log\LoggerInterface as Logger;
 
 /**
  * @copyright  Copyright (c) 2020 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
