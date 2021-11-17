@@ -22,6 +22,8 @@
     </event>
     <event name="techdivision_pixi_export_order_after">
         <observer name="pixiapicustomize_export_order_after" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderAfter" />
+        <!-- iWay PayPal PLUS observer -->
+        <observer name="iways_ppp_export_order_after" instance="pixiExample\PixiApiCustomize\Observer\IWaysPayPalPlusExportOrderAfter" />
     </event>
 
     <!-- Import Order -->
