@@ -41,3 +41,9 @@ The event is called before stock item ist saved. see [ImportStockItemBeforeSave]
 
 ### techdivision_pixi_import_stock_product_before_save
 The event is called before product item ist saved. see [ImportStockProductBeforeSave](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/ImportStockProductBeforeSave.php) 
+
+
+## Examples support 3rd-party modules
+We have implemented an example of how to support the payment method PayPal PLUS - Pay upon invoice.   
+In the example you will find an Order-Export-After-Observer which prepares and transfers the bank data for Pixi in the case of purchase on invoice.
+[IWaysPayPalPlusExportOrderAfter](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/IWaysPayPalPlusExportOrderAfter.php) 

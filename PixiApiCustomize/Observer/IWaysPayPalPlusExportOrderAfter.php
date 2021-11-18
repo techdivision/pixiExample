@@ -14,7 +14,7 @@ namespace pixiExample\PixiApiCustomize\Observer;
 
 use Magento\Framework\Event\Observer;
 use Magento\Sales\Model\Order;
-use pixiExample\PixiApiCustomize\Observer\AbstractObserver;
+use TechDivision\Pixi\Helper\Config;
 
 /**
  * @copyright  Copyright (c) 2021 TechDivision GmbH <info@techdivision.com> - TechDivision GmbH
@@ -23,12 +23,23 @@ use pixiExample\PixiApiCustomize\Observer\AbstractObserver;
  */
 class IWaysPayPalPlusExportOrderAfter extends AbstractObserver
 {
+    /** @var Config */
+    private $config;
+
+    /**
+     * @param Config $config
+     */
+    public function __construct(Config $config)
+    {
+        $this->config = $config;
+    }
 
     public function execute(Observer $observer)
     {
         /** @var Order $order */
         $order = $observer->getData('order');
         $payment = $order->getPayment();
+        $mappedPaymentName = $this->config->getPaymentMethodMappingValue($payment->getMethod(),$payment->getMethod());
 
         $xml = $observer->getData('xml');
         $xmlData = $xml->getData('data');
@@ -42,7 +53,7 @@ class IWaysPayPalPlusExportOrderAfter extends AbstractObserver
                 'BIC' => $payment->getExtensionAttributes()->getPppBankIdentifierCode(),
                 'IBAN' => $payment->getExtensionAttributes()->getPppInternationalBankAccountNumber()
             ];
-            $xmlData['ORDER_HEADER']['ORDER_INFO']['PAYMENT'][$payment->getMethod()] = $bankData;
+            $xmlData['ORDER_HEADER']['ORDER_INFO']['PAYMENT'][$mappedPaymentName] = $bankData;
             $xml->setData('data', $xmlData);
         }
     }
