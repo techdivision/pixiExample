@@ -30,9 +30,8 @@ see [ExportOrderItemAfter](https://github.com/techdivision/pixiExample/blob/mast
 
 ### techdivision_pixi_export_order_after
 * see [ExportOrderAfter](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/ExportOrderAfter.php) as a default example
-* see [EnableEmailPollingExportOrderAfter](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/EnableEmailPollingExportOrderAfter.php) as an example to enable the email and phone polling transfer for shipping infos to the shipping vendor. By default, due to GDPR compliance, the value must be disabled with "N". This example is not GDPR conform and only provides a technical solution. The reason for not passing the information to the shipping service provider was a bugfix in version [21.12](https://help.pixi.eu/pixi-21.12) of the Pixi Control Center. The information was previously passed to the shipping service provider without being checked
-
-Translated with www.DeepL.com/Translator (free version)
+* see [EnableEmailPollingExportOrderAfter](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/EnableEmailPollingExportOrderAfter.php) as an example to enable the email and phone polling transfer for shipping infos to the shipping vendor.   
+By default, due to GDPR compliance, the value must be disabled with "N". This example is not GDPR conform and only provides a technical solution. The reason for not passing the information to the shipping service provider was a bugfix in version [21.12](https://help.pixi.eu/pixi-21.12) of the Pixi Control Center. The information was previously passed to the shipping service provider without being checked
 
 ## Examples support 3rd-party modules
 We have implemented an example of how to support the payment method PayPal PLUS - Pay upon invoice.   
