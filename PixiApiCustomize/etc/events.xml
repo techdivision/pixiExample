@@ -24,6 +24,8 @@
         <observer name="pixiapicustomize_export_order_after" instance="pixiExample\PixiApiCustomize\Observer\ExportOrderAfter" />
         <!-- iWay PayPal PLUS observer -->
         <observer name="iways_ppp_export_order_after" instance="pixiExample\PixiApiCustomize\Observer\IWaysPayPalPlusExportOrderAfter" />
+        <!-- Observer to enable email polling -->
+        <observer name="enable_email_polling_export_order_after" instance="pixiExample\PixiApiCustomize\Observer\EnableEmailPollingExportOrderAfter" />
     </event>
 
     <!-- Import Order -->
