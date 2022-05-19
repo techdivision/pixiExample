@@ -29,7 +29,14 @@ see [ExportOrderItemBefore](https://github.com/techdivision/pixiExample/blob/mas
 see [ExportOrderItemAfter](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/ExportOrderItemAfter.php)
 
 ### techdivision_pixi_export_order_after
-see [ExportOrderAfter](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/ExportOrderAfter.php)
+* see [ExportOrderAfter](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/ExportOrderAfter.php) as a default example
+* see [EnableEmailPollingExportOrderAfter](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/EnableEmailPollingExportOrderAfter.php) as an example to enable the email and phone polling transfer for shipping infos to the shipping vendor.   
+By default, due to GDPR compliance, the value must be disabled with "N". This example is not GDPR conform and only provides a technical solution. The reason for not passing the information to the shipping service provider was a bugfix in version [21.12](https://help.pixi.eu/pixi-21.12) of the Pixi Control Center. The information was previously passed to the shipping service provider without being checked
+
+## Examples support 3rd-party modules
+We have implemented an example of how to support the payment method PayPal PLUS - Pay upon invoice.   
+In the example you will find an Order-Export-After-Observer which prepares and transfers the bank data for Pixi in the case of purchase on invoice.
+[IWaysPayPalPlusExportOrderAfter](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/IWaysPayPalPlusExportOrderAfter.php) 
 
 ### techdivision_pixi_import_order_status_after
 The event is called after import order status is saved. see [ImportOrderStatusAfter](https://github.com/techdivision/pixiExample/blob/master/PixiApiCustomize/Observer/ImportOrderStatusAfter.php) 
