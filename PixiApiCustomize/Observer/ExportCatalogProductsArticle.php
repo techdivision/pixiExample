@@ -32,7 +32,10 @@ class ExportCatalogProductsArticle extends AbstractObserver
         // get xml tree of order as DataObject.
         $xml = $observer->getData('article');
 
-        $newFeature = $this->addChild($xml, 'TD_OWN_SECTION_EVERY_ARTICLE');
-        $this->addChild($newFeature, 'TD_NEW_ITEM_ELEMENT', 'ProductVALUE ' . $product->getId());
+        // manipulate / change xml data for products
+        if ($product->getData('pixi_product_name')) {
+            $xml->ARTICLE_DETAILS->DESCRIPTION_SHORT = $product->getData('pixi_product_name');
+            $observer->setData('product', $xml);
+        }
     }
 }

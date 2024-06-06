@@ -32,10 +32,6 @@ class ExportCatalogProductCollection extends AbstractObserver
          * @var \TechDivision\Pixi\Model\ResourceModel\Product\Collection $productCollection
          */
         $productCollection = $observer->getData('product_collection');
-
-        $productCollection->addAttributeToSelect(['meta_description']);
-
-        // limit number of product
-        $productCollection->setPage(1, 50);
+        $productCollection->addAttributeToSelect(['pixi_product_name']);
     }
 }
