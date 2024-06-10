@@ -45,16 +45,19 @@ class ChangeShippingExportOrderAfter extends AbstractObserver
     }
 
     /**
+     * Magento shipping methods are divided into "Carrier" and "Method".
+     * These are connected with an underscore in the string representation.
+     * This observer provides an approach for mapping non-Magento-compliant shipping methods
+     * and thus transmitting them correctly to Pixi.
+     *
      * @param Observer $observer
      */
     public function execute(Observer $observer)
     {
         $order = $observer->getData('order');
-
         $xml = $observer->getData('xml');
         $xmlData = $xml->getData('data');
 
-        // add shipping vendor remark
         $shippingMethod = $this->getShippingMethod($order, true);
         if ($shippingMethod && $vendor = $this->getShippingCarrier($shippingMethod)) {
             $remark = $this->createXmlElement('REMARK', ['type' => 'SHIPPINGVENDOR'], $vendor);
@@ -95,9 +98,14 @@ class ChangeShippingExportOrderAfter extends AbstractObserver
                 return null;
             }
         }
-
         // get shipping method
         $method = $order->getShippingMethod(true);
+
+        //- techdivision => null
+        //- techdivision_techdivision => OK
+        //- techdivision_techdivision_techdivision => null
+        //- techdivision_techdivision_techdivision_techdivision => OK (compatibility)
+        //- techdivision_techdivision_techdivision_techdivision_techdivision => null
 
         if ((substr_count($shippingMethod, '_') > 3) || (substr_count($shippingMethod, '_') % 2 == 0)) {
             // phpcs:disable Magento2.Files.LineLength, Generic.Files.LineLength
